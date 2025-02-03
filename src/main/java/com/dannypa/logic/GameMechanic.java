@@ -19,6 +19,8 @@ public class GameMechanic {
 
     private final double DEFAULT_ANGLE = -Math.PI / 4;
 
+    private int attemptCounter = 0;
+
 
     public GameMechanic(int width, int height, int padding, int ballOffset) {
         ballControls = new BallControls(new Vector2(ballOffset, height - padding - ballOffset));
@@ -50,10 +52,15 @@ public class GameMechanic {
         return ballControls.ballPosition();
     }
 
+    public int attemptCounter() {
+        return attemptCounter;
+    }
+
     public void onLaunch(int newSpeed) {
         if (ballControls.isMoving()) {
             charges.clear();
             ballControls.reset();
+            attemptCounter++;
         } else {
             Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
                     .scale(SPEED_CONVERSION_CONSTANT);

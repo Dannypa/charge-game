@@ -11,7 +11,10 @@ public class ControlAndInfoPanel extends JPanel {
 
     private final Font FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
 
-    private final JLabel INFO = new JLabel("Attempts: 0");
+    private final String INFO_TEXT = "Attempts: ";
+    private final JLabel INFO = new JLabel(INFO_TEXT + 0);
+
+    private final GameMechanic gm;
 
 
     private JPanel getStatPanel() {
@@ -28,9 +31,14 @@ public class ControlAndInfoPanel extends JPanel {
         this.add(Box.createVerticalGlue(), Utility.getGBC(0, gridy, 1, weighty, GridBagConstraints.BOTH));
     }
 
+    public void updateInfo() {
+        INFO.setText(INFO_TEXT + gm.attemptCounter());
+    }
+
     public ControlAndInfoPanel(GameMechanic gm) {
         this.setLayout(new GridBagLayout());
 
+        this.gm = gm;
         JPanel controls = new SpeedControlPanel(FONT, gm);
         JPanel stats = getStatPanel();
 

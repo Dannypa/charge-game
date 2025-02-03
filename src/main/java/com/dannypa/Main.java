@@ -22,7 +22,7 @@ public class Main {
                 Constants.BALL_OFFSET
         );
 
-        JFrame frame = new MainFrame(gm);
+        MainFrame frame = new MainFrame(gm);
 
         Timer t = new Timer((int) (GameMechanic.DT * 1000), e -> {
             gm.update();

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
+    private final ControlAndInfoPanel bottom;
 
     private GridBagConstraints getMainGBC(int gridy, double weighty) {
         return Utility.getGBC(0, gridy, 1, weighty, GridBagConstraints.BOTH);
@@ -16,6 +17,12 @@ public class MainFrame extends JFrame {
         this.add(p, getMainGBC(gridy, weighty));
     }
 
+    @Override
+    public void repaint() {
+        bottom.updateInfo();
+        super.repaint();
+    }
+
     public MainFrame(GameMechanic gm) {
         this.setTitle("Charge Game");
         this.setLayout(new GridBagLayout());
@@ -23,7 +30,7 @@ public class MainFrame extends JFrame {
         GamePanel p = new GamePanel(gm);
         this.addPanelToMainColumn(p, 0, Constants.GAME_PANEL_WEIGHT);
 
-        JPanel bottom = new ControlAndInfoPanel(gm);
+        bottom = new ControlAndInfoPanel(gm);
         this.addPanelToMainColumn(bottom, 1, Constants.BOTTOM_WEIGHT);
 
         this.setSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
