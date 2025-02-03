@@ -5,7 +5,8 @@ import com.dannypa.Vector2;
 import java.util.ArrayList;
 
 class BallControls {
-    private final double ACCELERATION_CONSTANT = 1e7;
+    private final double ACCELERATION_CONSTANT = 1e5;
+    private final double EPS = 10;
 
     private Vector2 position;
     private Vector2 speed = new Vector2(0, 0);
@@ -27,11 +28,11 @@ class BallControls {
 
     private Vector2 getAcceleration(Charge c) {
         Vector2 chargeToBall = position.sub(c.position());
-        if (chargeToBall.getSqLength() < Vector2.EPS) {
+        if (chargeToBall.getSqLength() < EPS) {
             return new Vector2(0, 0);
         }
         double addedAccelerationMagnitude = ACCELERATION_CONSTANT * c.getSign() / chargeToBall.getSqLength();
-        return chargeToBall.scale(addedAccelerationMagnitude / chargeToBall.getLength());
+        return chargeToBall.scale(addedAccelerationMagnitude);
     }
 
     private void updateAcceleration(ArrayList<Charge> charges) {

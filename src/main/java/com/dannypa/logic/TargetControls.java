@@ -1,5 +1,6 @@
 package com.dannypa.logic;
 
+import com.dannypa.Constants;
 import com.dannypa.Vector2;
 
 import java.util.Arrays;
@@ -16,10 +17,17 @@ class TargetControls {
         }
     }
 
+    private boolean isColliding(Vector2 ballPosition, Vector2 targetPosition) {
+        Vector2 ballCenter = Utility.getCenter(ballPosition, Constants.BALL_SIZE);
+        Vector2 targetCenter = Utility.getCenter(targetPosition, Constants.TARGET_SIZE);
+        return (ballCenter.sub(targetCenter)).getSqLength()
+                <= Math.pow((Constants.BALL_SIZE + Constants.TARGET_SIZE) / 2.0, 2);
+    }
+
 
     public void update(Vector2 ballPosition) {
         for (Target t : targets) {
-            if (!t.hit() && t.position().sub(ballPosition).getSqLength() <= EPS) {
+            if (!t.hit() && isColliding(ballPosition, t.position())) {
                 t.hitTarget();
                 hitCount++;
             }

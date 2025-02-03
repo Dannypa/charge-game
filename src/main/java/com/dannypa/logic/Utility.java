@@ -10,4 +10,8 @@ class Utility {
     public static Vector2 generatePosition(int width, int height, int padding) {
         return new Vector2(r.nextInt(padding, width - padding), r.nextInt(padding, height - padding));
     }
+
+    public static Vector2 getCenter(Vector2 topLeft, double size) {
+        return topLeft.add(new Vector2(size / 2, size / 2));
+    }
 }
