@@ -3,8 +3,7 @@ package com.dannypa.logic;
 import com.dannypa.Main;
 import com.dannypa.Vector2;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GameMechanic {
@@ -12,7 +11,6 @@ public class GameMechanic {
 
     private final double SPEED_CONVERSION_CONSTANT = 20;
 
-    private final double ACCELERATION_CONSTANT = 1;
     private final BallControls ballControls;
     private final TargetControls targetControls;
     private final int TARGET_NUM = 2;
@@ -56,5 +54,14 @@ public class GameMechanic {
         Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
                 .scale(SPEED_CONVERSION_CONSTANT);
         ballControls.setSpeed(vectorSpeed);
+        ballControls.setIsMoving(true);
+    }
+
+    public void onClick(Vector2 mousePosition, int mouseButton) {
+        if (mouseButton == MouseEvent.BUTTON1) {
+            addCharge(new Charge(mousePosition, +1));
+        } else if (mouseButton == MouseEvent.BUTTON2) {
+            addCharge(new Charge(mousePosition, -1));
+        }
     }
 }

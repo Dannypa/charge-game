@@ -5,12 +5,20 @@ import com.dannypa.Vector2;
 import java.util.ArrayList;
 
 class BallControls {
+    private final double ACCELERATION_CONSTANT = 1e7;
+
     private Vector2 position;
     private Vector2 speed = new Vector2(0, 0);
     private Vector2 acceleration = new Vector2(0, 0);
 
+    private boolean isMoving = false;
+
     public BallControls(Vector2 initialPosition) {
         this.position = initialPosition;
+    }
+
+    public void setIsMoving(boolean isMoving) {
+        this.isMoving = isMoving;
     }
 
     public Vector2 ballPosition() {
@@ -22,7 +30,7 @@ class BallControls {
         if (chargeToBall.getSqLength() < Vector2.EPS) {
             return new Vector2(0, 0);
         }
-        double addedAccelerationMagnitude = c.getSign() / chargeToBall.getSqLength();
+        double addedAccelerationMagnitude = ACCELERATION_CONSTANT * c.getSign() / chargeToBall.getSqLength();
         return chargeToBall.scale(addedAccelerationMagnitude / chargeToBall.getLength());
     }
 
@@ -42,9 +50,11 @@ class BallControls {
     }
 
     public void update(double dt, ArrayList<Charge> charges) {
-        updateAcceleration(charges);
-        updateSpeed(dt);
-        updatePosition(dt);
+        if (isMoving) {
+            updateAcceleration(charges);
+            updateSpeed(dt);
+            updatePosition(dt);
+        }
     }
 
     public void setSpeed(Vector2 newSpeed) {

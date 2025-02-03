@@ -1,13 +1,17 @@
 package com.dannypa.ui;
 
 import com.dannypa.Constants;
+import com.dannypa.Vector2;
 import com.dannypa.logic.Charge;
 import com.dannypa.logic.GameMechanic;
 import com.dannypa.logic.Target;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class GamePanel extends JPanel {
 
@@ -33,6 +37,18 @@ public class GamePanel extends JPanel {
 
     public GamePanel(GameMechanic gm) {
         this.gm = gm;
+
+        this.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                Point p = getMousePosition();
+                if (p != null) {
+                    gm.onClick(new Vector2(p.x, p.y), e.getButton());
+                }
+            }
+        });
 
         this.setBorder(new LineBorder(Color.BLACK, 5));
     }
