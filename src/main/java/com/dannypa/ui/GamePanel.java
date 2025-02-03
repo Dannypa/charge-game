@@ -102,7 +102,5 @@ public class GamePanel extends JPanel {
                 }
             }
         });
-
-        this.setBorder(new LineBorder(Color.BLACK, 5));
     }
 }
