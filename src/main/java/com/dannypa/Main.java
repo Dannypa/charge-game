@@ -3,6 +3,7 @@ package com.dannypa;
 import com.dannypa.logic.GameMechanic;
 import com.dannypa.ui.MainFrame;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -21,6 +22,13 @@ public class Main {
                 Constants.BALL_OFFSET
         );
 
-        new MainFrame(gm);
+        JFrame frame = new MainFrame(gm);
+
+        Timer t = new Timer((int) (GameMechanic.DT * 1000), e -> {
+            gm.update();
+            frame.repaint();
+        });
+        t.start();
+
     }
 }

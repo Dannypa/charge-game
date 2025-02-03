@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
         GamePanel p = new GamePanel(gm);
         this.addPanelToMainColumn(p, 0, Constants.GAME_PANEL_WEIGHT);
 
-        JPanel bottom = new ControlAndInfoPanel();
+        JPanel bottom = new ControlAndInfoPanel(gm);
         this.addPanelToMainColumn(bottom, 1, Constants.BOTTOM_WEIGHT);
 
         this.setSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);

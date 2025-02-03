@@ -38,12 +38,16 @@ class BallControls {
     }
 
     private void updatePosition(double dt) {
-        position.add(speed.scale(dt));
+        position = position.add(speed.scale(dt));
     }
 
     public void update(double dt, ArrayList<Charge> charges) {
         updateAcceleration(charges);
         updateSpeed(dt);
         updatePosition(dt);
+    }
+
+    public void setSpeed(Vector2 newSpeed) {
+        speed = newSpeed;
     }
 }

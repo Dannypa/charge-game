@@ -1,7 +1,10 @@
 package com.dannypa.ui;
 
+import com.dannypa.logic.GameMechanic;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ControlAndInfoPanel extends JPanel {
     private final double[] VERTICAL_WEIGHTS = new double[]{1, 1, 1};
@@ -25,10 +28,10 @@ public class ControlAndInfoPanel extends JPanel {
         this.add(Box.createVerticalGlue(), Utility.getGBC(0, gridy, 1, weighty, GridBagConstraints.BOTH));
     }
 
-    public ControlAndInfoPanel() {
+    public ControlAndInfoPanel(GameMechanic gm) {
         this.setLayout(new GridBagLayout());
 
-        JPanel controls = new SpeedControlPanel(FONT);
+        JPanel controls = new SpeedControlPanel(FONT, gm);
         JPanel stats = getStatPanel();
 
         addFillerRow(0, VERTICAL_WEIGHTS[0]);
