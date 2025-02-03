@@ -12,14 +12,21 @@ class BallControls {
     private Vector2 speed = new Vector2(0, 0);
     private Vector2 acceleration = new Vector2(0, 0);
 
+    private final Vector2 initialPosition;
+
     private boolean isMoving = false;
 
     public BallControls(Vector2 initialPosition) {
+        this.initialPosition = initialPosition;
         this.position = initialPosition;
     }
 
     public void setIsMoving(boolean isMoving) {
         this.isMoving = isMoving;
+    }
+
+    public boolean isMoving() {
+        return isMoving;
     }
 
     public Vector2 ballPosition() {
@@ -60,5 +67,12 @@ class BallControls {
 
     public void setSpeed(Vector2 newSpeed) {
         speed = newSpeed;
+    }
+
+    public void reset() {
+        position = initialPosition;
+        speed = new Vector2(0, 0);
+        acceleration = new Vector2(0, 0);
+        isMoving = false;
     }
 }

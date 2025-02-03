@@ -51,10 +51,15 @@ public class GameMechanic {
     }
 
     public void onLaunch(int newSpeed) {
-        Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
-                .scale(SPEED_CONVERSION_CONSTANT);
-        ballControls.setSpeed(vectorSpeed);
-        ballControls.setIsMoving(true);
+        if (ballControls.isMoving()) {
+            charges.clear();
+            ballControls.reset();
+        } else {
+            Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
+                    .scale(SPEED_CONVERSION_CONSTANT);
+            ballControls.setSpeed(vectorSpeed);
+            ballControls.setIsMoving(true);
+        }
     }
 
     public void onClick(Vector2 mousePosition, int mouseButton) {
