@@ -12,4 +12,5 @@ public class Constants {
     public static final int BALL_SIZE = 50;
 
     public static final int BALL_OFFSET = 10;
+    public static final int WIN_BACKGROUND_OFFSET = 20;
 }

@@ -31,12 +31,13 @@ class SpeedControlPanel extends JPanel {
         input.setFont(font);
         launchAndReset.setFont(font);
         launchAndReset.addActionListener(e -> {
+            if (gm.isWon()) return;
             if (Objects.equals(launchAndReset.getText(), LAUNCH_TEXT)) {
                 launchAndReset.setText(RESET_TEXT);
                 gm.onLaunch(Integer.parseInt(input.getText()));
             } else {
                 launchAndReset.setText(LAUNCH_TEXT);
-                gm.onLaunch(0);
+                gm.onReset();
             }
         });
         // TODO: Error message!

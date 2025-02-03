@@ -4,7 +4,6 @@ import com.dannypa.logic.GameMechanic;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class ControlAndInfoPanel extends JPanel {
     private final double[] VERTICAL_WEIGHTS = new double[]{1, 1, 1};

@@ -56,17 +56,17 @@ public class GameMechanic {
         return attemptCounter;
     }
 
+    public void onReset() {
+        charges.clear();
+        ballControls.reset();
+        attemptCounter++;
+    }
+
     public void onLaunch(int newSpeed) {
-        if (ballControls.isMoving()) {
-            charges.clear();
-            ballControls.reset();
-            attemptCounter++;
-        } else {
-            Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
-                    .scale(SPEED_CONVERSION_CONSTANT);
-            ballControls.setSpeed(vectorSpeed);
-            ballControls.setIsMoving(true);
-        }
+        Vector2 vectorSpeed = new Vector2(newSpeed * Math.cos(DEFAULT_ANGLE), newSpeed * Math.sin(DEFAULT_ANGLE))
+                .scale(SPEED_CONVERSION_CONSTANT);
+        ballControls.setSpeed(vectorSpeed);
+        ballControls.setIsMoving(true);
     }
 
     public void onClick(Vector2 mousePosition, int mouseButton) {
