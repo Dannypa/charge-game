@@ -1,43 +1,44 @@
 package com.dannypa;
 
-class Vector2 {
-    final private double EPS = 1e-15;
-    final double x, y;
+public class Vector2 {
+    final public static double EPS = 1e-15;
+    final private double x, y;
 
-    public double getX() {
+    public double x() {
         return x;
     }
 
-    public double getY() {
+    public double y() {
         return y;
     }
 
-    Vector2(double x, double y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    void print() {
-        System.out.println(x + " " + y);
+    @Override
+    public String toString() {
+        return x + "; " + y;
     }
 
-    Vector2 add(Vector2 b) {
+    public Vector2 add(Vector2 b) {
         return new Vector2(this.x + b.x, this.y + b.y);
     }
 
-    Vector2 neg() {
+    public Vector2 neg() {
         return new Vector2(-x, -y);
     }
 
-    Vector2 sub(Vector2 b) {
+    public Vector2 sub(Vector2 b) {
         return add(b.neg());
     }
 
-    double getSqLength() {
+    public double getSqLength() {
         return x * x + y * y;
     }
 
-    double getLength() {
+    public double getLength() {
         return Math.sqrt(this.getSqLength());
     }
 
@@ -54,5 +55,9 @@ class Vector2 {
             return 1;
         }
         return multScalar(b) / (getLength() * b.getLength());
+    }
+
+    public Vector2 getUnit() {
+        return this.scale(1 / this.getLength());
     }
 }
