@@ -4,24 +4,6 @@ import com.dannypa.Vector2;
 
 import java.util.ArrayList;
 
-class Charge {
-    final Vector2 p;
-    final int sign;
-
-    public int getSign() {
-        return sign;
-    }
-
-    public Vector2 getPosition() {
-        return p;
-    }
-
-    Charge(Vector2 p, int sign) {
-        this.p = p;
-        this.sign = sign;
-    }
-}
-
 class BallControls {
     private Vector2 position;
     private Vector2 speed = new Vector2(0, 0);
@@ -31,12 +13,12 @@ class BallControls {
         this.position = initialPosition;
     }
 
-    public Vector2 getBallPosition() {
+    public Vector2 ballPosition() {
         return position;
     }
 
     private Vector2 getAcceleration(Charge c) {
-        Vector2 chargeToBall = position.sub(c.getPosition());
+        Vector2 chargeToBall = position.sub(c.position());
         if (chargeToBall.getSqLength() < Vector2.EPS) {
             return new Vector2(0, 0);
         }

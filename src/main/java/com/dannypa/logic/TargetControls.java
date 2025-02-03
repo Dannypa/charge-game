@@ -2,26 +2,7 @@ package com.dannypa.logic;
 
 import com.dannypa.Vector2;
 
-class Target {
-    private boolean hit = false;
-    private final Vector2 position;
-
-    public Target(Vector2 position) {
-        this.position = position;
-    }
-
-    public boolean hit() {
-        return hit;
-    }
-
-    public Vector2 position() {
-        return position;
-    }
-
-    public void hitTarget() {
-        hit = true;
-    }
-}
+import java.util.Arrays;
 
 class TargetControls {
     private final Target[] targets;
@@ -47,6 +28,10 @@ class TargetControls {
 
     public boolean allHit() {
         return hitCount == targets.length;
+    }
+
+    public Target[] targets() {
+        return Arrays.copyOf(targets, targets.length); // don't want the user to change it
     }
 }
 
