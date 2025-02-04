@@ -72,7 +72,7 @@ public class GameMechanic {
     public void onClick(Vector2 mousePosition, int mouseButton) {
         if (mouseButton == MouseEvent.BUTTON1) {
             addCharge(new Charge(mousePosition, +1));
-        } else if (mouseButton == MouseEvent.BUTTON2) {
+        } else if (mouseButton == MouseEvent.BUTTON3) {
             addCharge(new Charge(mousePosition, -1));
         }
     }
