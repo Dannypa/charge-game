@@ -13,13 +13,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
-    private final Color HIT_TARGET_COLOR = new Color(17, 69, 48);
-    private final Color UNHIT_TARGET_COLOR = new Color(255, 255, 0);
-
-    private final Color POSITIVE_COLOR = Color.RED;
-    private final Color NEGATIVE_COLOR = Color.BLUE;
-
-    private final Color BALL_COLOR = Color.GREEN;
 
     private final Color BACKGROUND_WIN_COLOR = new Color(3, 79, 32);
     private final Color WIN_COLOR = Color.WHITE;
@@ -29,29 +22,18 @@ public class GamePanel extends JPanel {
     private final GameMechanic gm;
 
     private void drawBall(Graphics2D g2d) {
-        g2d.setColor(BALL_COLOR);
-        g2d.fillOval((int) gm.ballPosition().x(), (int) gm.ballPosition().y(), Constants.BALL_SIZE, Constants.BALL_SIZE);
+        (new DrawableBall(gm.ballPosition())).draw(g2d);
     }
 
     private void drawTargets(Graphics2D g2d) {
         for (Target t : gm.targets()) {
-            if (t.hit()) {
-                g2d.setColor(HIT_TARGET_COLOR);
-            } else {
-                g2d.setColor(UNHIT_TARGET_COLOR);
-            }
-            g2d.fillOval((int) t.position().x(), (int) t.position().y(), Constants.TARGET_SIZE, Constants.TARGET_SIZE);
+            (new DrawableTarget(t)).draw(g2d);
         }
     }
 
     private void drawCharges(Graphics2D g2d) {
         for (Charge c : gm.charges()) {
-            if (c.getSign() > 0) {
-                g2d.setColor(POSITIVE_COLOR);
-            } else {
-                g2d.setColor(NEGATIVE_COLOR);
-            }
-            g2d.fillOval((int) c.position().x(), (int) c.position().y(), Constants.CHARGE_SIZE, Constants.CHARGE_SIZE);
+            (new DrawableCharge(c)).draw(g2d);
         }
     }
 
